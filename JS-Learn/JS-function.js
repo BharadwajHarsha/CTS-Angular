@@ -100,7 +100,6 @@
 //
 // display();
 // -------------------------------------------
-
 // Ques
 // function f(){
 // {
@@ -111,9 +110,173 @@
 //
 // f();
 // --------------------------------------------
-function f() {
-	var i = 100;
-}
-f();
+// function f() {
+// var i = 100;
+// }
+// f();
+// ----------------------------------------------
+// why we need 'this'.
+/*
+ * to ready obj properties in function instead of 'reference' var.
+ * 
+ */
 
-//----------------------------------------------
+// var person={
+// name:'Nag',
+// sayName:function(){
+// console.log('im '+this.name);
+// }
+// };
+//
+// var oldPerson=person;
+// person={name:'Riya'};
+//
+// oldPerson.sayName();
+// ---------------------------------------------------------------
+// function sayNameForAll(){
+// console.log('im '+this.name);
+// }
+//
+// //var p1={name:'Nag',sayName:function(){console.log('im '+this.name);}};
+// //var p2={name:'Riya',sayName:function(){console.log('im '+this.name);}};
+//
+// var p1={name:'Nag',sayName:sayNameForAll};
+// var p2={name:'Riya',sayName:sayNameForAll};
+//
+// sayNameForAll(); // ??? // function-invocation : 'this' --> global-obj
+// p1.sayName(); // im Nag // method-invocation : 'this' --> invoker obj
+// p2.sayName(); // im Riya
+//
+//
+// ---------------------------------------------------------
+// var greetUtil={
+// sayName:function(message){
+// console.log(message+' im '+this.name);
+// }
+// };
+//
+//
+// //--------------------------------
+//
+// var p1={name:'Nag'};
+// var p2={name:'Riya'};
+//
+// //----------------------------------------------------------
+//
+// // eager invocation
+//
+// //greetUtil.sayName.call(p2,"Hello"); // call or bind invocation
+// greetUtil.sayName.apply(p2,["Hello"]);
+//
+//
+// var p1SayNameFunc=greetUtil.sayName.bind(p1,"Hi");
+//
+//
+// // if 'greet-event' happen on p1
+// p1SayNameFunc();
+// ---------------------------------------------------------------------
+
+// function Person(name,age){
+// this.name=name;
+// this.age=age;
+// this.sayName=function(){
+// console.log('im '+this.name);
+// };
+// }
+// var p1=new Person('Nag',32); // constructor-invocation : 'this' -->
+// new-object
+// var p2=new Person('Riya',0.9);
+//
+// p1.sayName();
+// p2.sayName();
+// Person('Abc',100); // dont, bcz its constructor , invoke with 'new'
+// -----------------------------------------------------------------
+// var tnr={
+// name:'Nag',
+// doTeach:function(){
+// console.log(this.name +" teaching JS");
+// var that=this;
+// function learn(){
+// console.log(this.name+ ' learning from '+that.name);
+// }
+// //learn.call(this);
+// var stud={name:'CTS'};
+// learn.call(stud);
+// //learn();
+// }
+// };
+// tnr.doTeach();
+// -----------------------------------------------------------------
+// JS Function-closure
+
+//
+// function teach(){
+// console.log('teaching...');
+// var info='JS notes';
+// var count=0;
+// function learn(){
+// count++;
+// console.log('learning with '+info +" - "+count+" times");
+// }
+// console.log('teaching finished...');
+// return learn;
+// }
+//
+// var learnFunc=teach();
+//
+// learnFunc();
+// learnFunc();
+// learnFunc();
+//
+// -----------------------------------------------------------------
+
+//// counter-module
+//function init() {
+//	
+//	var count = 0;  // private
+//	
+//	// public
+//	return {
+//		doCount : function() {
+//			count++;
+//		},
+//		getCount : function() {
+//			return count;
+//		}
+//	};
+//}
+//var counterModule=init();
+
+
+var counterModule=(function(){
+	
+	
+	var count = 0;  // private
+	
+	// public
+	return {
+		doCount : function() {
+			count++;
+		},
+		getCount : function() {
+			return count;
+		}
+	};
+	
+})();
+
+// ---------------------------------------------------------------
+
+// other module
+
+counterModule.doCount();
+counterModule.doCount();
+counterModule.doCount();
+counterModule.doCount();
+counterModule.doCount();
+
+//count=-100;
+
+console.log(counterModule.getCount());
+
+//------------------------------------------------------------------
