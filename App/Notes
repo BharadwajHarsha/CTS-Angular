@@ -1,0 +1,135 @@
+
+
+
+  JS using Web API's ( e.g DOM ) , can bring any dynamic content/behav
+  to HTML page in browser.
+  
+  what JS can do on HTML page ?
+  
+  --> can create/retrieve/update/delete HTML elements dynamically. ( DOM manipulation )
+  --> can change element's style
+  --> can change element's attribute values
+  --> can change element's inner content
+  
+  --> using XHR API  , can communicate with server asynch ,
+      update results in existing page ( AJAX )
+      
+  --> can bring HTML-5 API support to HTML page
+     ( e.g audio,video,canvas,local storage , etc..)    
+     
+  --> can create RICH UI components on HTML page.
+  
+  etc.....
+  
+  ---------------------------------------------------------------
+  
+  // How JS even work in browser ?
+  
+  
+  
+    JS engine/runtime
+    
+       e.g 'V8 engine'  in chrome 
+           'rhino    '  in firefox
+  
+  
+    JS Runtime
+    
+              Stack + Heap
+  
+  
+   -------------------
+   
+   what is JS ?
+   
+     single-threaded , non-blocking , asynchronous , concurrent language
+   
+  ----------------------------------------------
+  
+    single-thread / one- call-stack / one thing at a time
+  
+  -------------------------------------------------------------
+  
+  e.g on call-stack
+  
+  
+	  
+	function multiply(a,b){
+	    var r=a*b;
+	    return r;
+	}
+	function square(n){
+	    return multiply(n,n);
+	}
+	function printSquare(n){
+	    var result=square(n);
+	    console.log(result);
+	}
+	printSquare(4);
+	
+	
+	
+	e.g -2
+	
+		
+	function foo(){
+	    throw new Error('oops');
+	}
+	function bar(){
+	    foo()
+	}
+	function baz(){
+	    bar();
+	}
+	baz();
+	  
+	  
+	function foo(){
+	    foo();
+	}
+	
+	foo();
+	
+	-----------------------------------
+	
+	 Blocking 
+	 
+	    if things are slow
+	    
+	    e.g
+	    
+	    big loops
+	    im processing
+	    n/w communications
+	    
+	    soln:
+	    
+	        --> asynch-callback functions
+	     
+	    --------------------------
+	    
+	    
+	    
+	    simulator :
+	    
+	    http://latentflip.com/loupe/
+	    
+	    ------------------------------------
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+     
