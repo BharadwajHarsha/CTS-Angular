@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Shop</title>
+<link href="css/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+.ng-scope{
+border: 1px solid red;
+}
+div{
+margin: 5px;
+padding: 10px;
+}
+</style>
+</head>
+<body>
+
+	<div class="container" ng-app="demoApp"">
+
+		<div class="page-header">NG- scopes</div>
+		
+		{{message}}  <button class="btn btn-primary" ng-click="changeMessage()">Change Message</button>
+		
+		<div ng-controller="ExController">
+			{{message}}
+		</div>
+		
+		
+		
+		<div ng-controller="ExController">
+			
+			{{message}} 
+			<button class="btn btn-primary" ng-click="changeMessage()">Change Message</button>
+			
+			
+			<div ng-controller="ExController">
+				{{message}}
+			</div>
+			
+		</div>
+
+	</div>
+
+
+	<script type="text/javascript" src="angular-1.4.8/angular.js"></script>
+	
+	<script type="text/javascript">
+		var appModule=angular.module('demoApp', []);
+		appModule.run(function($rootScope){
+			$rootScope.message="ROOT - message";
+			$rootScope.changeMessage=function(){
+				console.log('changing $rootScope message');
+				$rootScope.message='ROOT - new-message'
+			};
+		});
+		
+		appModule.controller('ExController', function($scope) {
+			$scope.message="message";
+			$scope.changeMessage=function(){
+				console.log('changing $scope message');
+				$scope.message='new-message'
+			};
+			
+		});
+		
+	</script>
+	
+</body>
+
+
+
+
+
+
+
+
+</html>
