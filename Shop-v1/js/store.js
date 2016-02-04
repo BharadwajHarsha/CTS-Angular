@@ -5,45 +5,55 @@
 var storeModule = angular.module('store', []);
 
 // Controller
-storeModule.controller('StoreController', function($scope,$filter) {
-	//this.product = item;
-	$scope.products=items;   // View-Model
-	
-	var op=$filter('uppercase')('naga');
-	console.log(op);
-	
-	var op2=$filter('priceDiscount')(1000,100);
-	console.log(op2);
-	
+storeModule.controller('StoreController', function($scope, $filter) {
+	// this.product = item;
+	$scope.products = items; // View-Model
+
+	// var op=$filter('uppercase')('naga');
+	// console.log(op);
+	//	
+	// var op2=$filter('priceDiscount')(1000,100);
+	// console.log(op2);
+
 });
+
+storeModule.controller('ProductTabsController', function($scope) {
+	$scope.tab = 1;
+	$scope.changeTab = function(tabValue) {
+		$scope.tab = tabValue;
+	};
+	$scope.isTabSelected = function(index) {
+		return $scope.tab === index;
+	};
+
+});
+
 // Filters
 storeModule.filter('priceDiscount', function() {
-	return function(originalPrice,discount){
-		if(discount){
-			return originalPrice-discount;
+	return function(originalPrice, discount) {
+		if (discount) {
+			return originalPrice - discount;
 		}
-		return originalPrice-1;   // filtering..
+		return originalPrice - 1; // filtering..
 	};
 });
 
-
 // Model - data
-var items =[ {
+var items = [ {
 	name : 'Mobile',
 	price : 29000,
 	description : 'New Model',
-	canBuy:true,
-	notAvailable:false,
-	make:Date.now()
-},
-{
+	canBuy : true,
+	notAvailable : false,
+	make : Date.now()
+}, {
 	name : 'Laptop',
 	price : 198000,
 	description : 'New Model',
-	canBuy:true,
-	notAvailable:false,
-	make:Date.now()
-}];
+	canBuy : true,
+	notAvailable : false,
+	make : Date.now()
+} ];
 
 // document.getElementsByTagName('h3')[0].innerHTML=item.name
 // document.getElementsByTagName('h4')[0].innerHTML=item.price

@@ -13,14 +13,45 @@
 		
 		<!-- View -->
 		<div ng-controller="StoreController as sc" class="list-group">
+			
 			<div ng-hide="product.notAvailable" 
 			     ng-repeat="product in products | limitTo:10 | orderBy:'-price'" class="list-group-item">
+				<span class="badge">{{$index+1}}</span>	
 				<h3>{{product.name | uppercase}}  <small>{{product.make|date:'yyyy'}}</small></h3>
 				<h3>{{product.price|priceDiscount:100|currency:'&#8377':1}}</h3>
-				<p>{{product.description}}</p>
 				<button class="btn btn-primary" ng-show="product">Add to cart</button>
 				<hr/>
+				
+				<section ng-controller="ProductTabsController">
+					<ul class="nav nav-tabs">
+						<li ng-class="{active:isTabSelected(1)}"><a href ng-click="changeTab(1)">Description</a></li>
+						<li ng-class="{active:isTabSelected(2)}"><a href ng-click="changeTab(2)">Specification</a></li>
+						<li ng-class="{active:isTabSelected(3)}"><a href ng-click="changeTab(3)">Review</a></li>
+					</ul>
+					
+					<div class="panel" ng-show="isTabSelected(1)">
+						<div class="panel-body">
+							{{product.description}}
+						</div>
+					</div>
+					
+					<div class="panel" ng-show="isTabSelected(2)">
+						<div class="panel-body">
+							Not Yet
+						</div>
+					</div>
+					
+					<div class="panel" ng-show="isTabSelected(3)">
+						<div class="panel-body">
+							None Yet
+						</div>
+					</div>
+					
+					current tab : {{tab}}
+				</section>
+				
 			</div>
+			
 		</div>
 
 	</div>
