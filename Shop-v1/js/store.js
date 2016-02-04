@@ -5,12 +5,27 @@
 var storeModule = angular.module('store', []);
 
 // Controller
-storeModule.controller('StoreController', function($scope) {
-
+storeModule.controller('StoreController', function($scope,$filter) {
 	//this.product = item;
 	$scope.products=items;   // View-Model
 	
+	var op=$filter('uppercase')('naga');
+	console.log(op);
+	
+	var op2=$filter('priceDiscount')(1000,100);
+	console.log(op2);
+	
 });
+// Filters
+storeModule.filter('priceDiscount', function() {
+	return function(originalPrice,discount){
+		if(discount){
+			return originalPrice-discount;
+		}
+		return originalPrice-1;   // filtering..
+	};
+});
+
 
 // Model - data
 var items =[ {
@@ -18,14 +33,16 @@ var items =[ {
 	price : 29000,
 	description : 'New Model',
 	canBuy:true,
-	notAvailable:false
+	notAvailable:false,
+	make:Date.now()
 },
 {
 	name : 'Laptop',
 	price : 198000,
 	description : 'New Model',
 	canBuy:true,
-	notAvailable:false
+	notAvailable:false,
+	make:Date.now()
 }];
 
 // document.getElementsByTagName('h3')[0].innerHTML=item.name
