@@ -17,29 +17,28 @@ padding: 10px;
 <body>
 
 	<div class="container" ng-app="demoApp"">
-
+		
 		<div class="page-header">NG- scopes</div>
 		
-		{{message}}  <button class="btn btn-primary" ng-click="changeMessage()">Change Message</button>
+		{{message}}  
+		<button class="btn btn-primary" ng-click="changeMessage()">Change Message</button>
 		
-		<div ng-controller="ExController">
-			{{message}}
-		</div>
-		
-		
-		
-		<div ng-controller="ExController">
-			
-			{{message}} 
+		<div ng-controller="FirstController">
+			FC - {{message}}
 			<button class="btn btn-primary" ng-click="changeMessage()">Change Message</button>
-			
-			
-			<div ng-controller="ExController">
-				{{message}}
-			</div>
-			
 		</div>
-
+		
+		<div ng-controller="FirstController">
+		  
+		   FC - {{message}} <button class="btn btn-primary" ng-click="changeMessage()">Change Message</button>
+		   
+		   <div ng-controller="SecondController">
+		    SC - {{message}}
+		   </div>
+		   
+		</div>
+		
+		
 	</div>
 
 
@@ -47,21 +46,25 @@ padding: 10px;
 	
 	<script type="text/javascript">
 		var appModule=angular.module('demoApp', []);
+		
 		appModule.run(function($rootScope){
-			$rootScope.message="ROOT - message";
+			$rootScope.message='ROOT-message';
 			$rootScope.changeMessage=function(){
-				console.log('changing $rootScope message');
-				$rootScope.message='ROOT - new-message'
+				console.log('changing $rootScope.message');
+				$rootScope.message='ROOT - new - message';
 			};
 		});
 		
-		appModule.controller('ExController', function($scope) {
-			$scope.message="message";
+		appModule.controller('FirstController', function($scope) {
+			console.log('new FirstController instance created ');
+			$scope.message='-message';
 			$scope.changeMessage=function(){
-				console.log('changing $scope message');
-				$scope.message='new-message'
+				console.log('changing $scope.message');
+				$scope.message='- new - message';
 			};
-			
+		});
+		appModule.controller('SecondController', function($scope) {
+			console.log('new SecondController instance created ');
 		});
 		
 	</script>

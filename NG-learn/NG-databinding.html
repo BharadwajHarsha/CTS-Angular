@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Shop</title>
+<link href="css/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+
+</style>
+</head>
+<body>
+
+	<div class="container" ng-app="demoApp">
+		
+		<div class="page-header">NG- DataBinding</div>
+		
+		<div ng-controller="DemoController">
+			
+			<input id="name" placeholder="Enter your name" ng-model="user">
+			<button id="reset" ng-click="resetUser()">Reset</button>
+			<button id="reset" ng-click="getUser()">getUser ( ng-click )</button>
+			<button id="reset" onclick="getUser()">getUser ( on-click )</button>
+			<hr/>
+			
+			Hello {{user}}
+			
+		</div>
+		
+		
+	</div>
+
+
+	<script type="text/javascript" src="angular-1.4.8/angular.js"></script>
+	
+	<script type="text/javascript">
+		var appModule=angular.module('demoApp', []);
+		appModule.controller('DemoController',function($scope){
+			
+			$scope.user="";
+			$scope.resetUser=function(){
+				$scope.user="";
+			};
+			$scope.getUser=function(){
+				$scope.user="Nagabhushanam";
+			};
+			
+			window.getUser=function(){
+				console.log('getting User..');
+				$scope.user="Nag";
+				$scope.$apply();  // trigger digest loop , from outside ng-framework
+			}
+			
+			$scope.$watch('user',function(newValue,oldValue){
+				console.log('$digest loop starts...so that this $watch exp executing..');
+				console.log('olValue  : '+oldValue);
+				console.log('newValue :'+newValue);
+			});
+			
+			
+			
+		});
+		
+	</script>
+	
+</body>
+
+
+
+
+
+
+
+
+</html>
