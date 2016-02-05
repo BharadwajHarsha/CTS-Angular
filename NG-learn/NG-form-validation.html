@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Shop</title>
+<link href="css/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+input.ng-dirty.ng-invalid{
+border: 1px solid red;
+}
+</style>
+</head>
+<body>
+
+	<div class="container" ng-app="demoApp">
+		
+		<div class="page-header">NG- Form Validation</div>
+		
+		<div class="col-md-6">
+			<form name="loginForm" novalidate ng-submit="loginForm.$valid && doLogin()">
+				<div class="form-group">
+					<label>Email</label>
+					<input name="email" class="form-control" type="email" ng-model="user.email" required>
+					<span class="text-danger" ng-show="loginForm.email.$dirty&&loginForm.email.$error.required">Required!</span>
+					<span class="text-danger" ng-show="loginForm.email.$dirty&&loginForm.email.$error.email">Invalid Email!</span>	
+				</div>
+				
+				<div class="form-group">
+					<label>Password</label>
+					<input name="password" class="form-control" type="password" ng-model="user.password" ng-minlength="3" ng-maxlength="6" required>
+					<span class="text-danger" ng-show="loginForm.password.$dirty&&loginForm.password.$error.required">Required!</span>
+					<span class="text-danger" ng-show="loginForm.password.$dirty&&loginForm.password.$error.minlength">Too short!</span>
+					<span class="text-danger" ng-show="loginForm.password.$dirty&&loginForm.password.$error.maxlength">Too long!</span>
+				</div>
+				
+				<button type="submit" class="btn btn-primary" ng-disabled="loginForm.$invalid">Sign-In</button>
+				
+				<ol>
+					<li>is form pristine   : {{loginForm.$pristine}}</li>
+					<li>is form dirty      : {{loginForm.$dirty}}</li>
+					<li>is form invalid    : {{loginForm.$invalid}}</li>
+					<li>is form valid      : {{loginForm.$valid}}</li>
+				</ol>
+				
+			</form>
+		</div>
+		
+		
+	</div>
+
+
+	<script type="text/javascript" src="angular-1.4.8/angular.js"></script>
+	
+	<script type="text/javascript">
+		var appModule=angular.module('demoApp', []);
+	</script>
+	
+</body>
+
+
+
+
+
+
+
+
+</html>

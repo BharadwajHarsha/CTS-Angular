@@ -28,6 +28,17 @@ storeModule.controller('ProductTabsController', function($scope) {
 
 });
 
+storeModule.controller('ReviewFormController', function($scope) {
+	$scope.newReview={author:'nag@gmail.com'};
+	$scope.addReview=function(product){
+		product.reviews.push($scope.newReview);
+		$scope.newReview={author:'nag@gmail.com'};
+	};
+});
+
+
+
+
 // Filters
 storeModule.filter('priceDiscount', function() {
 	return function(originalPrice, discount) {
@@ -38,6 +49,7 @@ storeModule.filter('priceDiscount', function() {
 	};
 });
 
+
 // Model - data
 var items = [ {
 	name : 'Mobile',
@@ -45,16 +57,30 @@ var items = [ {
 	description : 'New Model',
 	canBuy : true,
 	notAvailable : false,
-	make : Date.now()
+	make : Date.now(),
+	reviews : [ {
+		stars : 5,
+		author : 'nag@gmail.com',
+		body : 'this is good one..'
+	}, {
+		stars : 4,
+		author : 'indu@gmail.com',
+		body : 'this is bad one..'
+	} ]
 }, {
 	name : 'Laptop',
 	price : 198000,
 	description : 'New Model',
 	canBuy : true,
 	notAvailable : false,
-	make : Date.now()
+	make : Date.now(),
+	reviews : [ {
+		stars : 5,
+		author : 'nag@gmail.com',
+		body : 'this is good one..'
+	}, {
+		stars : 4,
+		author : 'indu@gmail.com',
+		body : 'this is bad one..'
+	} ]
 } ];
-
-// document.getElementsByTagName('h3')[0].innerHTML=item.name
-// document.getElementsByTagName('h4')[0].innerHTML=item.price
-// document.getElementsByTagName('p')[0].innerHTML=item.description

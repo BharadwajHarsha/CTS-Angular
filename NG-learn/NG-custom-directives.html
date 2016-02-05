@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Shop</title>
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="jquery/ui/jquery-ui.css" rel="stylesheet">
+<style type="text/css">
+</style>
+</head>
+<body>
+
+	<div class="container" ng-app="demoApp">
+
+		<div class="page-header">NG- Custom Directives</div>
+
+		<!--        // 1. attribute style directives -->
+		<!-- 				<div hello-world></div> -->
+		<!-- 				<div hello:world></div> -->
+
+		<!--        // 2. element style directives -->
+		<!-- 				<hello-world></hello-world> -->
+		<!-- 				<hello:world></hello:world> -->
+				
+		
+		<!--        // 3. class-name style directives -->
+		<!-- 				<div class="hello-world"></div> -->
+		<!-- 				<p class="hello-world"></p> -->
+		
+		<!--        // 4. HTML comment style directives -->
+							<!-- directive:hello-world -->
+							<!-- directive:hello-world -->
+		
+	</div>
+
+
+	<!-- 	<script type="text/javascript" src="jquery/jquery-2.2.0.js"></script> -->
+	<!-- 	<script type="text/javascript" src="jquery/ui/jquery-ui.js"></script> -->
+
+	<!-- 	<script type="text/javascript"> -->
+	<!-- 	</script> -->
+
+	<script type="text/javascript" src="angular-1.4.8/angular.js"></script>
+
+	<script type="text/javascript">
+		var appModule = angular.module('demoApp', []);
+
+		appModule.directive('helloWorld', function() {
+			return {
+				restrict : "AECM",
+				replace: true,
+				//template : "<h3> Angular - world </h3>"
+				templateUrl: "templates/hello-world.html"
+			};
+		});
+	</script>
+
+
+
+
+</body>
+
+
+
+
+
+
+
+
+</html>
