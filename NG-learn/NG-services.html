@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Shop</title>
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="jquery/ui/jquery-ui.css" rel="stylesheet">
+<style type="text/css">
+</style>
+</head>
+<body>
+
+	<div class="container" ng-app="demoApp">
+
+		<div class="page-header">NG- Custom Directives</div>
+		
+		<div ng-controller="HitCountController" class="jumbotron">
+			<button class="btn btn-primary" ng-click="doCount()">Hit Me</button> <span class="badge">{{count}}</span>
+		</div>
+		<div ng-controller="HitCountController" class="jumbotron">
+			<button class="btn btn-primary" ng-click="doCount()">Hit Me</button> <span class="badge">{{count}}</span>
+		</div>
+		<div ng-controller="KickCountController" class="jumbotron">
+			<button class="btn btn-primary" ng-click="doCount()">Kick Me</button> <span class="badge">{{count}}</span>
+		</div>
+
+	</div>
+
+	<script type="text/javascript" src="angular-1.4.8/angular.js"></script>
+
+	<script type="text/javascript">
+		
+		var appModule = angular.module('demoApp', []);
+		
+		/* appModule.config(function(countServiceProvider){
+			countServiceProvider.setInitCount(500);
+		}); */
+		
+
+		appModule.controller('HitCountController', function($scope,countService) {
+			console.log('New HitCountController instance created....');
+			$scope.count = countService.getCount();
+			$scope.doCount = function() {
+				countService.doCount();
+				$scope.count =countService.getCount();
+			}
+		});
+		
+		appModule.controller('KickCountController', function($scope,countService) {
+			console.log('New KickCountController instance created....');
+			$scope.count = countService.getCount();
+			$scope.doCount = function() {
+				countService.doCount();
+				$scope.count =countService.getCount();
+			}
+		});
+		
+		//-------------------------------------------------------------------
+		
+		// way-1
+		/* 
+		function CountService(){
+			console.log('New CountService instance created....');
+			this.count=0;
+			this.doCount=function(){
+				this.count+=1;
+			};
+			this.getCount=function(){
+				return this.count;
+			}
+		}
+		appModule.service('countService', CountService); */
+		
+		//-------------------------------------------------------------------
+		
+		// way-2
+		
+		/* appModule.factory('countService', function() {
+			console.log('countService factory func invoked....');
+			// init...
+			
+			var service={
+				count:0,
+				doCount:function(){
+					this.count+=1;
+				},
+				getCount:function(){
+					return this.count;
+				}
+			};
+			
+			return service;
+			
+		});
+		 */
+		//-------------------------------------------------------------------
+		
+		// way-3
+		
+		
+		/* appModule.provider('countService', function() {
+			var c=0;
+			this.setInitCount=function(initialCount){
+				console.log('setting initial count....');
+				c=initialCount;
+			};
+			this.$get = function() {
+				console.log('countServiceProvider $get func invoked...');
+				var service = {
+					count : c,
+					doCount : function() {
+						this.count += 1;
+					},
+					getCount : function() {
+						return this.count;
+					}
+				};
+
+				return service;
+			};
+		}); */
+		
+		
+		//-------------------------------------------------------------------
+		
+		var service1 = {
+					count : 0,
+					doCount : function() {
+						this.count += 1;
+					},
+					getCount : function() {
+						return this.count;
+					}
+				};
+		
+		//appModule.value('countService',service1);
+		appModule.constant('countService',service1);
+		
+
+		//-------------------------------------------------------------------
+		 
+	</script>
+
+
+
+
+</body>
+
+
+
+
+
+
+
+
+</html>
