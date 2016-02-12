@@ -1,0 +1,18 @@
+
+
+Node - stream
+--------------
+
+what is stream ?
+
+   --> data-flow from input-source to output-source
+   
+   
+   types
+   ------
+   
+   --> input-stream
+   --> output-stream
+   --> duplex
+   
+   
