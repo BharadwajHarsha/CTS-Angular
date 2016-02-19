@@ -1,0 +1,21 @@
+{
+  "plugins": {
+    "outline": {
+      
+    },
+    "node": {
+      
+    },
+    "grunt": {
+      
+    },
+    "gulp": {
+      
+    }
+  },
+  "libs": [
+    "ecma5",
+    "ecma6"
+  ],
+  "ecmaVersion": 6
+}
